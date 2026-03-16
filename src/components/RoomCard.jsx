@@ -1,13 +1,15 @@
 import { BedDouble, CheckCircle2, Ruler, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import SmartImage from './SmartImage'
 
 function RoomCard({ room }) {
   return (
     <article className="group overflow-hidden rounded-3xl border border-gold/20 bg-white/85 shadow-luxury transition hover:-translate-y-1 hover:shadow-2xl">
       <div className="relative h-56 overflow-hidden sm:h-64">
-        <img
+        <SmartImage
           src={room.images[0]}
           alt={room.name}
+          loading="lazy"
           className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-midnight/65 to-transparent" />

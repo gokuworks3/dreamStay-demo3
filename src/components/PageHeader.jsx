@@ -1,8 +1,10 @@
+import SmartImage from './SmartImage'
+
 function PageHeader({ title, subtitle, image }) {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
-        <img src={image} alt={title} className="h-full w-full object-cover" />
+        <SmartImage src={image} alt={title} loading="eager" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-midnight/85 via-midnight/65 to-navy/70" />
       </div>
 

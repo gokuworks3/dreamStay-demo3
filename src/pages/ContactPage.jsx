@@ -3,7 +3,7 @@ import { useState } from 'react'
 import PageHeader from '../components/PageHeader'
 
 const contactHeaderImage =
-  'https://images.unsplash.com/photo-1519822473471-6c7b8ea0f5a1?auto=format&fit=crop&w=1800&q=80'
+  'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=80'
 
 function ContactPage() {
   const [contactForm, setContactForm] = useState({

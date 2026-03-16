@@ -1,5 +1,6 @@
 import ImageSlider from '../components/ImageSlider'
 import PageHeader from '../components/PageHeader'
+import SmartImage from '../components/SmartImage'
 import { galleryPhotos } from '../data/hotelData'
 
 const galleryHeaderImage =
@@ -35,9 +36,10 @@ function GalleryPage() {
               key={photo.id}
               className="group relative overflow-hidden rounded-2xl border border-white/40 bg-white/70 shadow-lg break-inside-avoid"
             >
-              <img
+              <SmartImage
                 src={photo.url}
                 alt={photo.caption}
+                loading="lazy"
                 className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
               />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-midnight/85 via-midnight/50 to-transparent p-4 text-sm text-white">

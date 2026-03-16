@@ -86,7 +86,7 @@ export const rooms = [
       'Butler Service',
     ],
     images: [
-      'https://images.unsplash.com/photo-1616594039964-3f6fa59f6538?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1200&q=80',
     ],
   },
@@ -184,12 +184,12 @@ export const galleryPhotos = [
   },
   {
     id: 7,
-    url: 'https://images.unsplash.com/photo-1519821172141-b5d8a6f4e6f3?auto=format&fit=crop&w=1200&q=80',
+    url: 'https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=1200&q=80',
     caption: 'Destination dining moments by moonlight',
   },
   {
     id: 8,
-    url: 'https://images.unsplash.com/photo-1505692794403-55c912f4a6e1?auto=format&fit=crop&w=1200&q=80',
+    url: 'https://images.unsplash.com/photo-1573052905904-34ad8c27f0cc?auto=format&fit=crop&w=1200&q=80',
     caption: 'Luxury suite living area with private terrace',
   },
   {

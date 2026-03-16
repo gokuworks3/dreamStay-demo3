@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
+import SmartImage from './SmartImage'
 
 function normalizeSlide(item) {
   if (typeof item === 'string') {
@@ -56,10 +57,11 @@ function ImageSlider({
   return (
     <section className={`relative overflow-hidden rounded-none ${heightClass} ${className}`}>
       {slides.map((slide, index) => (
-        <img
+        <SmartImage
           key={`${slide.url}-${index}`}
           src={slide.url}
           alt={slide.title || `DreamStay slide ${index + 1}`}
+          loading={index === 0 ? 'eager' : 'lazy'}
           className={`absolute inset-0 h-full w-full object-cover transition-all duration-1000 ${
             index === currentIndex ? 'scale-100 opacity-100' : 'scale-105 opacity-0'
           }`}
