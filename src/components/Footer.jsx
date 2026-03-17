@@ -12,7 +12,12 @@ const links = [
   { label: 'Contact', to: '/contact' },
 ]
 
-const social = [Instagram, Facebook, Twitter, Youtube]
+const social = [
+  { Icon: Instagram, label: 'Instagram' },
+  { Icon: Facebook, label: 'Facebook' },
+  { Icon: Twitter, label: 'Twitter' },
+  { Icon: Youtube, label: 'Youtube' },
+]
 
 const revealVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -27,32 +32,32 @@ function Footer() {
       whileInView="visible"
       animate="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="mt-8 border-t border-gold/30 bg-deepBlue"
+      className="mt-8 border-t border-gold/20 bg-deepBlue"
     >
+      <div className="mx-auto h-px w-3/4 bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+
       <div className="section-wrap grid gap-10 pb-12 pt-14 sm:grid-cols-2 lg:grid-cols-4 lg:py-16">
         <div className="space-y-4">
-          <p className="flex items-center gap-2 text-2xl text-pureWhite">
-            <span className="rounded-full border border-gold/70 bg-gold/15 p-2 text-gold">
+          <p className="flex items-center gap-2.5 text-2xl text-pureWhite">
+            <span className="rounded-full border border-gold/70 bg-gold/15 p-2 text-gold shadow-glow">
               <Crown size={16} />
             </span>
-            <span className="font-heading">DreamStay</span>
+            <span className="font-heading">
+              Dream<span className="text-gradient-gold">Stay</span>
+            </span>
           </p>
-          <p className="text-sm text-pureWhite/75">
+          <p className="text-sm leading-relaxed text-pureWhite/70">
             DreamStay crafts premium resort journeys blending refined luxury, modern comfort, and
             unforgettable hospitality.
           </p>
           <div className="flex items-center gap-3">
-            {social.map((Icon, index) => (
+            {social.map((item) => (
               <Motion.span
-                key={index}
-                variants={revealVariants}
-                initial="hidden"
-                whileInView="visible"
-                animate="visible"
-                viewport={{ once: true }}
-                className="rounded-full border border-gold/50 p-2 text-gold"
+                key={item.label}
+                whileHover={{ scale: 1.15, y: -2 }}
+                className="cursor-pointer rounded-full border border-gold/40 bg-gold/[0.06] p-2 text-gold transition-colors hover:border-gold/70 hover:bg-gold/20"
               >
-                <Icon size={16} />
+                <item.Icon size={16} />
               </Motion.span>
             ))}
           </div>
@@ -60,10 +65,10 @@ function Footer() {
 
         <div>
           <h3 className="mb-4 font-heading text-xl text-gold">Quick Links</h3>
-          <ul className="space-y-2 text-sm text-pureWhite/80">
+          <ul className="space-y-2 text-sm text-pureWhite/75">
             {links.map((link) => (
               <li key={link.to}>
-                <Link to={link.to} className="transition hover:text-gold">
+                <Link to={link.to} className="transition hover:text-gold hover:translate-x-1 inline-block">
                   {link.label}
                 </Link>
               </li>
@@ -71,7 +76,7 @@ function Footer() {
           </ul>
         </div>
 
-        <div className="space-y-3 text-sm text-pureWhite/80">
+        <div className="space-y-3 text-sm text-pureWhite/75">
           <h3 className="font-heading text-xl text-gold">Contact Info</h3>
           <p className="flex items-center gap-2">
             <Phone size={14} className="text-gold" />
@@ -89,7 +94,7 @@ function Footer() {
 
         <div>
           <h3 className="mb-4 font-heading text-xl text-gold">Newsletter</h3>
-          <p className="mb-3 text-sm text-pureWhite/75">
+          <p className="mb-3 text-sm text-pureWhite/70">
             Get exclusive offers and travel inspiration delivered monthly.
           </p>
           <form className="space-y-3">
@@ -101,8 +106,8 @@ function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-pureWhite/12 py-4 text-center text-xs text-pureWhite/60">
-        {'\u00A9'} {new Date().getFullYear()} DreamStay. All rights reserved.
+      <div className="border-t border-pureWhite/[0.08] py-4 text-center text-xs text-pureWhite/50">
+        {'\u00A9'} {new Date().getFullYear()} DreamStay. All rights reserved. Crafted with excellence.
       </div>
     </Motion.footer>
   )

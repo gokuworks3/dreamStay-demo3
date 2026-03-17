@@ -47,16 +47,22 @@ function Navbar() {
       viewport={{ once: true, amount: 0.2 }}
       className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? 'border-gold/55 bg-deepBlue/95 shadow-[0_8px_28px_rgba(5,15,28,0.55)] backdrop-blur-xl'
+          ? 'border-gold/40 bg-deepBlue/95 shadow-[0_8px_32px_rgba(5,15,28,0.6)] backdrop-blur-2xl'
           : 'border-transparent bg-transparent'
       }`}
     >
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="rounded-full border border-gold/80 bg-gold/20 p-2 text-gold">
+        <Link to="/" className="group flex items-center gap-2.5" onClick={() => setOpen(false)}>
+          <Motion.span
+            whileHover={{ rotate: 15, scale: 1.1 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+            className="rounded-full border border-gold/80 bg-gold/20 p-2 text-gold shadow-glow transition-shadow duration-300 group-hover:shadow-glow-lg"
+          >
             <Crown size={16} />
+          </Motion.span>
+          <span className="font-heading text-2xl text-pureWhite">
+            Dream<span className="text-gradient-gold">Stay</span>
           </span>
-          <span className="font-heading text-2xl text-pureWhite">DreamStay</span>
         </Link>
 
         <nav className="mx-auto hidden items-center gap-7 lg:flex">
@@ -66,14 +72,25 @@ function Navbar() {
               to={link.to}
               end={link.to === '/'}
               className={({ isActive }) =>
-                `text-xs font-semibold uppercase tracking-[0.18em] transition ${
+                `relative text-xs font-semibold uppercase tracking-[0.18em] transition ${
                   isActive
-                    ? 'border-b-2 border-gold pb-1 text-gold'
-                    : 'pb-1 text-pureWhite/85 hover:border-b-2 hover:border-gold/65 hover:text-gold'
+                    ? 'text-gold'
+                    : 'text-pureWhite/85 hover:text-gold'
                 }`
               }
             >
-              {link.label}
+              {({ isActive }) => (
+                <>
+                  {link.label}
+                  {isActive && (
+                    <Motion.span
+                      layoutId="nav-underline"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-gold"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </>
+              )}
             </NavLink>
           ))}
         </nav>
@@ -101,7 +118,7 @@ function Navbar() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="overflow-hidden border-t border-gold/40 bg-deepBlue/95 lg:hidden"
+            className="overflow-hidden border-t border-gold/40 bg-deepBlue/95 backdrop-blur-xl lg:hidden"
           >
             <Motion.nav
               variants={revealVariants}

@@ -1,9 +1,10 @@
 ﻿import { motion as Motion } from 'framer-motion'
-import { Dumbbell, Sparkles, UtensilsCrossed, Waves } from 'lucide-react'
+import { ArrowRight, Award, Clock, Dumbbell, Globe, ShieldCheck, Sparkles, UtensilsCrossed, Waves } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import AmenityCard from '../components/AmenityCard'
 import BookingSearchBar from '../components/BookingSearchBar'
 import HeroSection from '../components/HeroSection'
+import StatsBanner from '../components/StatsBanner'
 import TestimonialCard from '../components/TestimonialCard'
 
 const revealVariants = {
@@ -83,6 +84,36 @@ const testimonials = [
     avatar:
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&q=80',
   },
+]
+
+const whyChooseUs = [
+  {
+    icon: Award,
+    title: 'Award Winning',
+    description: 'Recognized globally for exceptional hospitality and luxury experiences.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Trusted & Secure',
+    description: 'Your safety and privacy are our top priorities with 24/7 security.',
+  },
+  {
+    icon: Clock,
+    title: '24/7 Concierge',
+    description: 'Round-the-clock personalized assistance for all your needs.',
+  },
+  {
+    icon: Globe,
+    title: 'Prime Location',
+    description: 'Nestled in a breathtaking coastal paradise with pristine beaches.',
+  },
+]
+
+const stats = [
+  { value: 15, suffix: '+', label: 'Years of Excellence' },
+  { value: 98, suffix: '%', label: 'Guest Satisfaction' },
+  { value: 50, suffix: '+', label: 'Luxury Suites' },
+  { value: 24, suffix: '/7', label: 'Premium Service' },
 ]
 
 function Home() {
@@ -184,6 +215,90 @@ function Home() {
             <TestimonialCard key={testimonial.name} testimonial={testimonial} />
           ))}
         </div>
+      </section>
+
+      <section className="section-wrap">
+        <Motion.div
+          variants={revealVariants}
+          initial="hidden"
+          whileInView="visible"
+          animate="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          className="mb-8 text-center"
+        >
+          <p className="section-kicker mx-auto">Why Choose Us</p>
+          <h2 className="section-title mt-3">The DreamStay Difference</h2>
+        </Motion.div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {whyChooseUs.map((item, index) => (
+            <Motion.div
+              key={item.title}
+              variants={revealVariants}
+              initial="hidden"
+              whileInView="visible"
+              animate="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: index * 0.1 }}
+              className="group text-center"
+            >
+              <Motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="mx-auto mb-4 inline-flex rounded-2xl border border-gold/40 bg-gold/10 p-4 text-gold transition-shadow duration-300 group-hover:shadow-glow"
+              >
+                <item.icon size={28} />
+              </Motion.div>
+              <h3 className="font-heading text-xl text-pureWhite">{item.title}</h3>
+              <p className="mt-2 text-sm text-pureWhite/70">{item.description}</p>
+            </Motion.div>
+          ))}
+        </div>
+
+        <div className="mt-12">
+          <StatsBanner stats={stats} />
+        </div>
+      </section>
+
+      <section className="section-wrap">
+        <Motion.div
+          variants={revealVariants}
+          initial="hidden"
+          whileInView="visible"
+          animate="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative overflow-hidden rounded-3xl"
+        >
+          <div className="absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80"
+              alt="Luxury resort view"
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-deepBlue/95 via-deepBlue/80 to-deepBlue/60" />
+          </div>
+
+          <div className="relative px-6 py-16 sm:px-12 sm:py-20 lg:px-16">
+            <div className="max-w-2xl">
+              <p className="section-kicker">Limited Time Offer</p>
+              <h2 className="mt-3 text-3xl font-semibold text-pureWhite sm:text-4xl lg:text-5xl">
+                Begin Your <span className="text-gradient-gold">Luxury Journey</span> Today
+              </h2>
+              <p className="mt-4 text-base text-pureWhite/80 sm:text-lg">
+                Book now and receive 15% off your first stay plus complimentary breakfast and spa
+                credits. Your dream escape awaits.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link to="/booking" className="btn-gold">
+                  Reserve Now
+                  <ArrowRight size={16} className="ml-2" />
+                </Link>
+                <Link to="/rooms" className="btn-outline">
+                  View Rooms
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Motion.div>
       </section>
     </div>
   )

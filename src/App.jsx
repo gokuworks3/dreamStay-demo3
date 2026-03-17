@@ -1,8 +1,10 @@
-﻿import { AnimatePresence, motion as Motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { AnimatePresence, motion as Motion } from 'framer-motion'
+import { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import BackToTop from './components/BackToTop'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
+import SplashScreen from './components/SplashScreen'
 import About from './pages/About'
 import Amenities from './pages/Amenities'
 import Booking from './pages/Booking'
@@ -98,18 +100,30 @@ function AppRoutes() {
 }
 
 function App() {
+  const [splashDone, setSplashDone] = useState(false)
+
+  const handleSplashComplete = useCallback(() => {
+    setSplashDone(true)
+  }, [])
+
   return (
     <BrowserRouter>
-      <div className="relative min-h-screen overflow-x-hidden">
-        <Navbar />
-        <main className="pt-20 sm:pt-24">
-          <AppRoutes />
-        </main>
-        <Footer />
-      </div>
+      <AnimatePresence>
+        {!splashDone && <SplashScreen onComplete={handleSplashComplete} />}
+      </AnimatePresence>
+
+      {splashDone && (
+        <div className="relative min-h-screen overflow-x-hidden">
+          <Navbar />
+          <main className="pt-20 sm:pt-24">
+            <AppRoutes />
+          </main>
+          <Footer />
+          <BackToTop />
+        </div>
+      )}
     </BrowserRouter>
   )
 }
 
 export default App
-
