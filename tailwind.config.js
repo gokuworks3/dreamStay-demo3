@@ -4,36 +4,33 @@ export default {
   theme: {
     extend: {
       colors: {
-        midnight: '#061634',
-        navy: '#0c2a59',
-        royal: '#113b7a',
+        deepBlue: '#0b1f3a',
         gold: '#d4af37',
-        ivory: '#fcfaf6',
+        pureWhite: '#ffffff',
+        blueSoft: '#18335a',
+        blueDark: '#07162b',
       },
       fontFamily: {
-        display: ['"Cormorant Garamond"', 'serif'],
-        sans: ['Outfit', 'sans-serif'],
+        heading: ['"Playfair Display"', 'serif'],
+        body: ['Poppins', 'sans-serif'],
       },
       boxShadow: {
-        luxury: '0 18px 60px -30px rgba(6, 22, 52, 0.55)',
-      },
-      backgroundImage: {
-        'gold-sheen':
-          'linear-gradient(130deg, rgba(212, 175, 55, 0.25) 0%, rgba(255, 255, 255, 0.12) 48%, rgba(12, 42, 89, 0.35) 100%)',
+        glass: '0 10px 40px rgba(8, 27, 52, 0.38)',
+        glow: '0 0 20px rgba(212, 175, 55, 0.5)',
       },
       keyframes: {
         fadeUp: {
           '0%': { opacity: '0', transform: 'translateY(24px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+        glowPulse: {
+          '0%, 100%': { boxShadow: '0 0 0 rgba(212, 175, 55, 0)' },
+          '50%': { boxShadow: '0 0 22px rgba(212, 175, 55, 0.45)' },
         },
       },
       animation: {
-        'fade-up': 'fadeUp 700ms ease-out both',
-        float: 'float 7s ease-in-out infinite',
+        'fade-up': 'fadeUp 0.7s ease-out both',
+        'glow-pulse': 'glowPulse 2.4s ease-in-out infinite',
       },
     },
   },

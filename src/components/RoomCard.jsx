@@ -1,62 +1,75 @@
-import { BedDouble, CheckCircle2, Ruler, Users } from 'lucide-react'
+﻿import { motion as Motion } from 'framer-motion'
+import { Bath, BedDouble, UtensilsCrossed, Waves, Wifi, Wind } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import SmartImage from './SmartImage'
+
+const iconMap = {
+  Wifi,
+  Breakfast: UtensilsCrossed,
+  OceanView: Waves,
+  AirConditioned: Wind,
+  Bathtub: Bath,
+  KingBed: BedDouble,
+}
+
+const revealVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+}
 
 function RoomCard({ room }) {
   return (
-    <article className="group overflow-hidden rounded-3xl border border-gold/20 bg-white/85 shadow-luxury transition hover:-translate-y-1 hover:shadow-2xl">
-      <div className="relative h-56 overflow-hidden sm:h-64">
-        <SmartImage
-          src={room.images[0]}
+    <Motion.article
+      variants={revealVariants}
+      initial="hidden"
+      whileInView="visible"
+      animate="visible"
+      viewport={{ once: true, amount: 0.22 }}
+      className="glass-card group overflow-hidden transition duration-300 hover:-translate-y-1"
+    >
+      <div className="relative h-64 overflow-hidden">
+        <img
+          src={room.image}
           alt={room.name}
           loading="lazy"
-          className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-midnight/65 to-transparent" />
-        <p className="absolute bottom-4 left-4 rounded-full border border-gold/40 bg-midnight/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-gold">
+        <div className="absolute inset-0 bg-gradient-to-t from-deepBlue/80 via-deepBlue/20 to-transparent" />
+        <p className="absolute bottom-4 left-4 rounded-full border border-gold/50 bg-deepBlue/75 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-gold">
           From ${room.price}/Night
         </p>
       </div>
 
       <div className="space-y-4 p-6">
-        <div className="space-y-2">
-          <h3 className="text-3xl font-semibold text-midnight">{room.name}</h3>
-          <p className="text-sm text-slate-600">{room.description}</p>
+        <div>
+          <h3 className="font-heading text-3xl text-pureWhite">{room.name}</h3>
+          <p className="mt-2 text-sm text-pureWhite/75">{room.description}</p>
         </div>
 
-        <div className="grid gap-2 text-xs uppercase tracking-[0.14em] text-slate-500 sm:grid-cols-3">
-          <p className="flex items-center gap-2">
-            <Users size={14} className="text-gold" />
-            Up to {room.guests} Guests
-          </p>
-          <p className="flex items-center gap-2">
-            <Ruler size={14} className="text-gold" />
-            {room.size}
-          </p>
-          <p className="flex items-center gap-2">
-            <BedDouble size={14} className="text-gold" />
-            {room.type}
-          </p>
+        <div className="flex flex-wrap gap-2">
+          {room.amenities.map((item) => {
+            const Icon = iconMap[item]
+            return (
+              <span
+                key={item}
+                className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-pureWhite/10 px-3 py-1 text-xs text-pureWhite/85"
+              >
+                {Icon ? <Icon size={13} className="text-gold" /> : null}
+                {item}
+              </span>
+            )
+          })}
         </div>
-
-        <ul className="space-y-1 text-sm text-slate-700">
-          {room.amenities.slice(0, 3).map((amenity) => (
-            <li key={amenity} className="flex items-center gap-2">
-              <CheckCircle2 size={14} className="text-gold" />
-              {amenity}
-            </li>
-          ))}
-        </ul>
 
         <Link
           to={`/booking?room=${encodeURIComponent(room.name)}`}
-          className="inline-flex items-center rounded-full border border-gold/50 bg-midnight px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold transition hover:bg-royal"
+          className="btn-gold w-full"
         >
-          Reserve Suite
+          Book Now
         </Link>
       </div>
-    </article>
+    </Motion.article>
   )
 }
 
 export default RoomCard
+

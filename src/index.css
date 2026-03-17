@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,23 +6,24 @@
 
 @layer base {
   :root {
-    color-scheme: only light;
+    color-scheme: dark;
   }
 
   * {
     @apply box-border;
   }
 
-  body {
-    @apply m-0 min-h-screen bg-ivory font-sans text-slate-700 antialiased;
-    background-image:
-      radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.2), transparent 36%),
-      radial-gradient(circle at 80% 8%, rgba(17, 59, 122, 0.18), transparent 28%),
-      linear-gradient(165deg, #fefcf7 0%, #f5f7fb 48%, #eef2f9 100%);
+  html {
+    @apply scroll-smooth;
   }
 
-  #root {
-    @apply min-h-screen;
+  body {
+    @apply m-0 min-h-screen bg-blueDark font-body text-pureWhite antialiased;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 8% 6%, rgba(212, 175, 55, 0.2), transparent 34%),
+      radial-gradient(circle at 84% 16%, rgba(16, 44, 80, 0.32), transparent 35%),
+      linear-gradient(150deg, #050f21 0%, #0b1f3a 42%, #08182f 100%);
   }
 
   h1,
@@ -31,65 +32,55 @@
   h4,
   h5,
   h6 {
-    @apply font-display text-midnight;
+    @apply font-heading;
   }
 
-  p {
-    @apply leading-relaxed;
+  #root {
+    @apply min-h-screen;
   }
 
   ::selection {
-    background: rgba(212, 175, 55, 0.25);
-    color: #061634;
+    background-color: rgba(212, 175, 55, 0.4);
+    color: #0b1f3a;
   }
 }
 
 @layer components {
-  .luxury-container {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  .section-wrap {
+    @apply mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20;
   }
 
-  .luxury-panel {
-    @apply rounded-2xl border border-gold/25 bg-white/80 shadow-luxury backdrop-blur-md;
+  .glass-card {
+    @apply rounded-2xl border border-pureWhite/20 bg-pureWhite/10 shadow-glass backdrop-blur-xl;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center rounded-xl bg-gold px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-deepBlue transition duration-300 hover:bg-deepBlue hover:text-gold hover:shadow-glow sm:px-6 sm:text-sm;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-xl border border-gold px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-gold transition duration-300 hover:bg-gold hover:text-deepBlue hover:shadow-glow sm:px-6 sm:text-sm;
+  }
+
+  .input-luxury {
+    @apply w-full rounded-lg border border-pureWhite/25 bg-deepBlue/80 px-4 py-3 text-sm text-pureWhite outline-none transition placeholder:text-pureWhite/55 focus:border-gold focus:ring-2 focus:ring-gold/30;
   }
 
   .section-title {
-    @apply text-4xl font-semibold tracking-tight text-midnight sm:text-5xl;
+    @apply text-3xl font-semibold leading-tight text-pureWhite sm:text-5xl;
   }
 
-  .section-subtitle {
-    @apply mt-2 text-xs font-semibold uppercase tracking-[0.28em] text-royal/70 sm:text-sm;
-  }
-
-  .gold-divider {
-    @apply mt-4 h-[2px] w-24 bg-gradient-to-r from-gold via-amber-200 to-transparent;
-  }
-
-  .link-pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-midnight transition hover:bg-gold/20;
+  .section-kicker {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-gold;
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .hero-overlay {
+    background: linear-gradient(160deg, rgba(2, 10, 24, 0.74) 0%, rgba(8, 21, 44, 0.55) 45%, rgba(11, 31, 58, 0.78) 100%);
   }
-}
 
-@keyframes shimmer {
-  0% {
-    background-position: 0% 50%;
+  .text-shadow-soft {
+    text-shadow: 0 10px 32px rgba(0, 0, 0, 0.4);
   }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.gold-shimmer {
-  background: linear-gradient(120deg, rgba(212, 175, 55, 0.3), rgba(255, 255, 255, 0.45), rgba(17, 59, 122, 0.35));
-  background-size: 200% 200%;
-  animation: shimmer 8s ease infinite;
 }
